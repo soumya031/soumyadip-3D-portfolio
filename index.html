@@ -9,7 +9,7 @@
     <meta property="og:title" content="Soumyadip Saha - 3D Portfolio">
     <meta property="og:description" content="Interactive 3D portfolio showcasing full-stack development skills">
     <meta property="og:type" content="website">
-    <title>Soumyadip Saha - 3D Portfolio | Full Stack Developer</title>
+    <title>Soumyadip Saha - 3D Portfolio | Murn Stack Developer</title>
     
     <!-- External Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -66,7 +66,7 @@
                 <li><a href="#contact" class="nav-link" data-section="contact">
                     <i class="fas fa-envelope"></i> Contact
                 </a></li>
-                <li><a href="#" class="btn btn-resume" onclick="downloadResume()">
+                <li><a href="#" class="btn btn-resume desktop-resume" onclick="downloadResume()">
                     <i class="fas fa-download"></i> Resume
                 </a></li>
             </ul>
@@ -79,6 +79,43 @@
             </div>
         </div>
     </nav>
+
+    <!-- Mobile Bottom Navigation (Three Icon Format) -->
+    <nav class="mobile-bottom-nav" id="mobile-bottom-nav">
+        <button class="mobile-nav-btn" data-section="home" aria-label="Home">
+            <i class="fas fa-home"></i>
+        </button>
+        <button class="mobile-nav-btn" id="mobile-sections-btn" aria-label="Sections">
+            <i class="fas fa-th-large"></i>
+        </button>
+        <button class="mobile-nav-btn" data-section="contact" aria-label="Contact">
+            <i class="fas fa-envelope"></i>
+        </button>
+    </nav>
+
+    <!-- Mobile Sections Modal -->
+    <div class="mobile-sections-modal" id="mobile-sections-modal">
+        <div class="mobile-sections-content">
+            <button class="close-modal" id="close-sections-modal" aria-label="Close">
+                <i class="fas fa-times"></i>
+            </button>
+            <ul class="mobile-sections-list">
+                <li><a href="#home" class="nav-link" data-section="home"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="#about" class="nav-link" data-section="about"><i class="fas fa-user"></i> About</a></li>
+                <li><a href="#work" class="nav-link" data-section="work"><i class="fas fa-briefcase"></i> Work</a></li>
+                <li><a href="#blog" class="nav-link" data-section="blog"><i class="fas fa-blog"></i> Blog</a></li>
+                <li><a href="#games" class="nav-link" data-section="games"><i class="fas fa-gamepad"></i> Games</a></li>
+                <li><a href="#terminal" class="nav-link" data-section="terminal"><i class="fas fa-terminal"></i> Terminal</a></li>
+                <li><a href="#contact" class="nav-link" data-section="contact"><i class="fas fa-envelope"></i> Contact</a></li>
+                <li><a href="#" class="btn btn-resume" onclick="downloadResume()"><i class="fas fa-download"></i> Resume</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Floating Resume Button for Mobile -->
+    <button class="floating-resume-btn" id="floating-resume-btn" onclick="downloadResume()" aria-label="Download Resume">
+        <i class="fas fa-download"></i>
+    </button>
 
     <!-- 3D Canvas Container -->
     <div id="canvas-container"></div>

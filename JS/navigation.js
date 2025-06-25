@@ -366,6 +366,49 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.classList.add('mobile-device');
     }
     window.navigationController = new NavigationController();
+
+    // Mobile bottom nav and modal logic
+    const mobileSectionsBtn = document.getElementById('mobile-sections-btn');
+    const mobileSectionsModal = document.getElementById('mobile-sections-modal');
+    const closeSectionsModal = document.getElementById('close-sections-modal');
+    const mobileNavBtns = document.querySelectorAll('.mobile-nav-btn[data-section]');
+    const floatingResumeBtn = document.getElementById('floating-resume-btn');
+
+    if (mobileSectionsBtn && mobileSectionsModal && closeSectionsModal) {
+        mobileSectionsBtn.addEventListener('click', () => {
+            mobileSectionsModal.classList.add('active');
+        });
+        closeSectionsModal.addEventListener('click', () => {
+            mobileSectionsModal.classList.remove('active');
+        });
+        // Close modal when a link is tapped
+        mobileSectionsModal.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileSectionsModal.classList.remove('active');
+            });
+        });
+    }
+    // Mobile nav icon navigation
+    mobileNavBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const section = btn.getAttribute('data-section');
+            if (section && window.navigationController) {
+                window.navigationController.navigateToSection(section);
+            }
+        });
+    });
+    // Hide floating resume on desktop
+    function handleResumeBtnVisibility() {
+        if (window.innerWidth > 768) {
+            floatingResumeBtn.style.display = 'none';
+        } else {
+            floatingResumeBtn.style.display = 'flex';
+        }
+    }
+    if (floatingResumeBtn) {
+        handleResumeBtnVisibility();
+        window.addEventListener('resize', handleResumeBtnVisibility);
+    }
 });
 
 // Global navigation functions

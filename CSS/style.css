@@ -108,12 +108,18 @@ body {
     padding: 0.8rem 2rem;
 }
 
-.nav-container {
+.navbar .nav-container {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
+    justify-content: space-between;
+}
+
+.navbar .logo {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex: 0 0 auto;
+    margin-right: 1.5rem;
 }
 
 .logo {
@@ -1230,6 +1236,36 @@ body {
         /* JS should add .mobile-device to <body> on mobile */
         /* Example: reduce particle count in JS if .mobile-device is present */
     }
+    .floating-resume-btn {
+        position: fixed;
+        bottom: 24px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 10030;
+        background: linear-gradient(45deg, #00ffff, #ff00ff);
+        color: #181828;
+        border: none;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        box-shadow: 0 4px 24px 0 rgba(0,0,0,0.35);
+        font-size: 1.8rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.2s, color 0.2s;
+        cursor: pointer;
+        margin-bottom: 0; /* Remove any margin that could push it up */
+    }
+    .floating-resume-btn:active, .floating-resume-btn:focus {
+        background: linear-gradient(45deg, #ff00ff, #00ffff);
+        color: #fff;
+        outline: none;
+    }
+    /* Add extra space to footer if needed */
+    .footer {
+        padding-bottom: 80px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -1795,4 +1831,257 @@ body {
     color: var(--text-secondary);
     font-size: 0.7rem;
     margin-top: 0.2rem;
+}
+
+/* --- MOBILE BOTTOM NAVIGATION & MODAL --- */
+@media (max-width: 768px) {
+  .mobile-bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    height: 60px;
+    background: rgba(20, 20, 30, 0.98);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 10010;
+    box-shadow: 0 -2px 16px rgba(0,0,0,0.2);
+  }
+  .mobile-nav-btn {
+    background: none;
+    border: none;
+    color: var(--primary-color, #00ffff);
+    font-size: 1.7rem;
+    flex: 1;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+    border-radius: 0;
+  }
+  .mobile-nav-btn:active, .mobile-nav-btn:focus {
+    background: rgba(0,255,255,0.08);
+    outline: none;
+  }
+  .mobile-sections-modal {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(10,10,20,0.95);
+    z-index: 10020;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.2s;
+  }
+  .mobile-sections-modal.active {
+    display: flex;
+  }
+  .mobile-sections-content {
+    background: #181828;
+    border-radius: 18px;
+    padding: 2rem 1.5rem 1.5rem;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    width: 90vw;
+    max-width: 350px;
+    position: relative;
+  }
+  .close-modal {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    color: var(--primary-color, #00ffff);
+    font-size: 1.3rem;
+    cursor: pointer;
+  }
+  .mobile-sections-list {
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .mobile-sections-list .nav-link, .mobile-sections-list .btn-resume {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    font-size: 1.1rem;
+    color: var(--text-primary, #e0e0e0);
+    background: none;
+    border: none;
+    padding: 0.7rem 1rem;
+    border-radius: 8px;
+    transition: background 0.2s;
+    text-decoration: none;
+  }
+  .mobile-sections-list .nav-link:active, .mobile-sections-list .btn-resume:active {
+    background: rgba(0,255,255,0.08);
+  }
+  .desktop-resume {
+    display: none !important;
+  }
+  .floating-resume-btn {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10030;
+    background: linear-gradient(45deg, #00ffff, #ff00ff);
+    color: #181828;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    box-shadow: 0 4px 24px 0 rgba(0,0,0,0.35);
+    font-size: 1.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, color 0.2s;
+    cursor: pointer;
+    margin-bottom: 0; /* Remove any margin that could push it up */
+  }
+  .floating-resume-btn:active, .floating-resume-btn:focus {
+    background: linear-gradient(45deg, #ff00ff, #00ffff);
+    color: #fff;
+    outline: none;
+  }
+}
+
+@media (min-width: 769px) {
+  .mobile-bottom-nav,
+  .mobile-sections-modal,
+  .floating-resume-btn {
+    display: none !important;
+  }
+  .desktop-resume {
+    display: inline-block !important;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+#home.section {
+  background: url('assets/images/background.png') center center/cover no-repeat;
+  position: relative;
+  z-index: 1;
+  background-attachment: fixed;
+}
+@media (max-width: 900px) {
+  #home.section {
+    background: url('assets/images/background.png') center center/cover no-repeat;
+    background-attachment: scroll;
+  }
+  #home.section::before {
+    display: none !important;
+  }
+  #home.section .container {
+    padding: 2.5rem 1rem 2.5rem 1rem;
+    text-align: center;
+  }
+  #home.section .hero-content {
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+  }
+  #home.section .hero-text {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  #home.section .hero-title {
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  #home.section .title-subtitle {
+    font-size: 1.1rem;
+    margin-bottom: 0.7rem;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.35);
+  }
+  #home.section .hero-subtitle {
+    font-size: 1.05rem;
+    margin-bottom: 1.2rem;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.35);
+  }
+  #home.section .hero-description p {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 1.2rem;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.35);
+  }
+  #home.section .tech-stack {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.2rem;
+  }
+  #home.section .tech-tag {
+    font-size: 0.95rem;
+    padding: 0.3rem 0.7rem;
+  }
+  #home.section .hero-buttons {
+    flex-direction: column;
+    gap: 0.7rem;
+    align-items: center;
+  }
+  #home.section .btn {
+    width: 100%;
+    font-size: 1.05rem;
+    padding: 0.9rem 0;
+    margin-bottom: 0.5rem;
+  }
+}
+#home.section > * {
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 900px) {
+  #about.section .section-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  #about.section .section-title {
+    font-size: 1.7rem;
+    margin-bottom: 0.5rem;
+  }
+  #about.section .section-subtitle {
+    font-size: 1.1rem;
+    margin-bottom: 1.2rem;
+  }
+  #about.section .about-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+  #about.section .about-paragraph {
+    text-align: center;
+    margin-bottom: 1.2rem;
+    max-width: 95vw;
+  }
+  #about.section .about-paragraph h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  #about.section .about-paragraph p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
+  }
 }
