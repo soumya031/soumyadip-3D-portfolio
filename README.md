@@ -124,7 +124,7 @@ A modern, interactive 3D portfolio website showcasing full-stack development ski
 ### Installation
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/3d-portfolio.git
+   git clone https://github.com/soumya031/3d-portfolio.git
    cd 3d-portfolio
    ```
 
