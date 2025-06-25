@@ -32,7 +32,13 @@ function createParticles() {
         new THREE.ConeGeometry(0.05, 0.15, 6)
     ];
 
-    for (let i = 0; i < 150; i++) {
+    // Reduce particle count on mobile
+    let particleCount = 150;
+    if (document.body.classList.contains('mobile-device')) {
+        particleCount = 50;
+    }
+
+    for (let i = 0; i < particleCount; i++) {
         const geometry = geometries[Math.floor(Math.random() * geometries.length)];
         const color = colors[Math.floor(Math.random() * colors.length)];
         const material = new THREE.MeshBasicMaterial({ 
