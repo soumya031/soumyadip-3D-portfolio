@@ -1,0 +1,152 @@
+{
+  "name": "3d-portfolio",
+  "version": "2.0.0",
+  "description": "A modern, interactive 3D portfolio website showcasing full-stack development skills with engaging animations, interactive games, and a comprehensive blog system.",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve .",
+    "dev": "npx live-server --port=8000",
+    "build": "echo 'Static site - no build required'",
+    "deploy": "echo 'Deploy to your preferred hosting service'",
+    "lint": "echo 'Add linting configuration if needed'",
+    "test": "echo 'Add testing configuration if needed'"
+  },
+  "keywords": [
+    "portfolio",
+    "3d",
+    "threejs",
+    "gsap",
+    "javascript",
+    "html5",
+    "css3",
+    "interactive",
+    "games",
+    "blog",
+    "quiz",
+    "responsive",
+    "modern",
+    "cyberpunk",
+    "animation"
+  ],
+  "author": {
+    "name": "Soumyadip Saha",
+    "email": "soumyadipsaha743@gmail.com",
+    "url": "https://github.com/soumya031"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/soumya031/3d-portfolio.git"
+  },
+  "bugs": {
+    "url": "https://github.com/soumya031/3d-portfolio/issues"
+  },
+  "homepage": "https://soumya031.github.io/3d-portfolio",
+  "devDependencies": {
+    "live-server": "^1.2.2",
+    "serve": "^14.2.1"
+  },
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=6.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead",
+    "not ie 11"
+  ],
+  "dependencies": {},
+  "peerDependencies": {},
+  "optionalDependencies": {},
+  "bundledDependencies": [],
+  "os": [
+    "darwin",
+    "linux",
+    "win32"
+  ],
+  "cpu": [
+    "x64",
+    "arm64"
+  ],
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "funding": {
+    "type": "individual",
+    "url": "https://github.com/sponsors/soumya031"
+  },
+  "contributors": [
+    {
+      "name": "Soumyadip Saha",
+      "email": "soumyadip@email.com",
+      "url": "https://github.com/soumya031"
+    }
+  ],
+  "files": [
+    "index.html",
+    "CSS/",
+    "JS/",
+    "assets/",
+    "README.md",
+    "LICENSE"
+  ],
+  "directories": {
+    "lib": "JS",
+    "test": "tests",
+    "docs": "docs"
+  },
+  "config": {
+    "port": 8000,
+    "host": "localhost"
+  },
+  "metadata": {
+    "title": "Soumyadip Saha - 3D Portfolio",
+    "description": "Interactive 3D portfolio showcasing full-stack development skills",
+    "keywords": "portfolio, developer, full stack, React, Node.js, Python, AI/ML",
+    "author": "Soumyadip Saha",
+    "version": "2.0.0",
+    "lastUpdated": "2024-01-15",
+    "features": [
+      "3D Background Animations",
+      "Interactive Games",
+      "Dynamic Blog System",
+      "Educational Quiz System",
+      "Contact Form Management",
+      "Responsive Design",
+      "Modern Animations",
+      "Performance Optimized"
+    ],
+    "technologies": [
+      "HTML5",
+      "CSS3",
+      "JavaScript ES6+",
+      "Three.js",
+      "GSAP",
+      "Font Awesome"
+    ],
+    "sections": [
+      "Home",
+      "About",
+      "Work",
+      "Blog",
+      "Games",
+      "Quiz",
+      "Contact"
+    ],
+    "games": [
+      "Snake Game",
+      "Cricket Game",
+      "Football Game",
+      "Tic Tac Toe"
+    ],
+    "quizCategories": [
+      "Programming",
+      "Frontend",
+      "Backend",
+      "DevOps",
+      "Database"
+    ]
+  }
+} 

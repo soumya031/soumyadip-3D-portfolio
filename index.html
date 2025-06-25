@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Soumyadip Saha - Full Stack Developer Portfolio with 3D animations, interactive games, and modern web technologies">
+    <meta name="keywords" content="portfolio, developer, full stack, React, Node.js, Python, AI/ML">
+    <meta name="author" content="Soumyadip Saha">
+    <meta property="og:title" content="Soumyadip Saha - 3D Portfolio">
+    <meta property="og:description" content="Interactive 3D portfolio showcasing full-stack development skills">
+    <meta property="og:type" content="website">
+    <title>Soumyadip Saha - 3D Portfolio | Full Stack Developer</title>
+    
+    <!-- External Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="CSS/style.css">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="JS/main.js" as="script">
+    <link rel="preload" href="JS/threeDScene.js" as="script">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <h3>Loading Portfolio...</h3>
+            <div class="loading-progress">
+                <div class="progress-bar"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-code"></i>
+                <span>Soumyadip Saha</span>
+            </div>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#home" class="nav-link active" data-section="home">
+                    <i class="fas fa-home"></i> Home
+                </a></li>
+                <li><a href="#about" class="nav-link" data-section="about">
+                    <i class="fas fa-user"></i> About
+                </a></li>
+                <li><a href="#work" class="nav-link" data-section="work">
+                    <i class="fas fa-briefcase"></i> Work
+                </a></li>
+                <li><a href="#blog" class="nav-link" data-section="blog">
+                    <i class="fas fa-blog"></i> Blog
+                </a></li>
+                <li><a href="#games" class="nav-link" data-section="games">
+                    <i class="fas fa-gamepad"></i> Games
+                </a></li>
+                <li><a href="#terminal" class="nav-link" data-section="terminal">
+                    <i class="fas fa-terminal"></i> Terminal
+                </a></li>
+                <li><a href="#contact" class="nav-link" data-section="contact">
+                    <i class="fas fa-envelope"></i> Contact
+                </a></li>
+                <li><a href="#" class="btn btn-resume" onclick="downloadResume()">
+                    <i class="fas fa-download"></i> Resume
+                </a></li>
+            </ul>
+            
+            <!-- Mobile Menu Toggle -->
+            <div class="mobile-menu-toggle" id="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 3D Canvas Container -->
+    <div id="canvas-container"></div>
+
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-progress" id="scroll-progress"></div>
+
+    <!-- Home Section -->
+    <section id="home" class="section active">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title">
+                        <span class="title-line">Soumyadip Saha</span>
+                        <span class="title-subtitle">Full Stack Developer</span>
+                    </h1>
+                    <p class="hero-subtitle">Crafting Digital Experiences with Code & Creativity</p>
+                    <div class="hero-description">
+                        <p>Fresh Graduate | Full Stack Developer | AI/ML Enthusiast</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">AI/ML</span>
+                        </div>
+                    </div>
+                    <div class="hero-buttons">
+                        <a href="#about" class="btn btn-primary" data-section="about">
+                            <i class="fas fa-rocket"></i> Explore My Journey
+                        </a>
+                        <a href="#contact" class="btn btn-secondary" data-section="contact">
+                            <i class="fas fa-paper-plane"></i> Get In Touch
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="floating-elements">
+                        <div class="floating-icon" data-icon="⚛️">React</div>
+                        <div class="floating-icon" data-icon="🐍">Python</div>
+                        <div class="floating-icon" data-icon="🤖">AI/ML</div>
+                        <div class="floating-icon" data-icon="⚡">Node.js</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="scroll-indicator">
+            <div class="scroll-arrow"></div>
+            <span>Scroll to explore</span>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">About Me</h2>
+                <p class="section-subtitle">Passionate about technology and innovation</p>
+            </div>
+            
+            <div class="about-content">
+                <div class="profile-section">
+                    <div class="profile-image">
+                        <div class="profile-avatar">
+                            <img src="assets/images/profile.png" alt="Profile Picture">
+                        </div>
+                        <div class="profile-status">
+                            <span class="status-dot"></span>
+                            <span>Available for opportunities</span>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://github.com/soumya031" target="_blank" class="social-link">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/soumyadip-saha-/" target="_blank" class="social-link">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="mailto:soumyadipsaha743@email.com" class="social-link">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="about-text">
+                    <div class="about-paragraph">
+                        <h3>My Journey</h3>
+                        <p>I'm a passionate and dedicated fresh graduate with a strong foundation in software development. 
+                        My journey in technology began with curiosity and has evolved into a deep commitment to creating 
+                        innovative solutions that make a difference.</p>
+                    </div>
+                    
+                    <div class="about-paragraph">
+                        <h3>What I Do</h3>
+                        <p>I specialize in full-stack development and have a keen interest in artificial intelligence 
+                        and machine learning. Currently seeking opportunities to contribute to dynamic teams and grow 
+                        as a professional developer.</p>
+                    </div>
+                    
+                    <div class="about-paragraph">
+                        <h3>My Approach</h3>
+                        <p>I believe in continuous learning and staying updated with the latest technological trends. 
+                        Every project is an opportunity to learn something new and push the boundaries of what's possible.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="skills-section">
+                <h3 class="skills-title">Technical Skills</h3>
+            <div class="skills-grid">
+                    <div class="skill-card" data-category="frontend">
+                        <div class="skill-icon">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                        <h4>Frontend Development</h4>
+                        <p>React, Angular, Vue.js, HTML5, CSS3, JavaScript, TypeScript</p>
+                        <div class="skill-level">
+                            <div class="skill-bar" data-level="90"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-card" data-category="backend">
+                        <div class="skill-icon">
+                            <i class="fas fa-server"></i>
+                        </div>
+                        <h4>Backend Development</h4>
+                        <p>Node.js, Python, Java, Express.js, Django, Flask</p>
+                        <div class="skill-level">
+                            <div class="skill-bar" data-level="85"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-card" data-category="database">
+                        <div class="skill-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <h4>Database Management</h4>
+                        <p>MongoDB, MySQL, PostgreSQL, Firebase, Redis</p>
+                        <div class="skill-level">
+                            <div class="skill-bar" data-level="80"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-card" data-category="ai-ml">
+                        <div class="skill-icon">
+                            <i class="fas fa-brain"></i>
+                </div>
+                        <h4>AI/ML Technologies</h4>
+                        <p>TensorFlow, Scikit-learn, Pandas, NumPy, PyTorch</p>
+                        <div class="skill-level">
+                            <div class="skill-bar" data-level="75"></div>
+                </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Work Section -->
+    <section id="work" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">My Work</h2>
+                <p class="section-subtitle">Projects that showcase my skills and passion</p>
+            </div>
+            
+            <div class="work-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="web">Web Apps</button>
+                <button class="filter-btn" data-filter="mobile">Mobile</button>
+                <button class="filter-btn" data-filter="ai">AI/ML</button>
+            </div>
+            
+            <div class="work-grid">
+                <div class="work-card" data-category="web">
+                    <div class="work-image">
+                        <div class="work-overlay">
+                            <div class="work-links">
+                                <a href="https://ai-healthcare-assistant-865419808765.us-west1.run.app/" class="work-link" title="Live Demo" target="_blank">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                                <a href="https://github.com/soumya031/AI-healthcare-assistants" class="work-link" title="Source Code" target="_blank">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="work-placeholder">Smart AI Healthcare Assistant</div>
+                    </div>
+                    <div class="work-content">
+                    <h3>Smart AI Healthcare Assistant</h3>
+                        <p>AI Healthcare Assistant Pro is a smart AI assistant, built with React.js, Node.js, and Google Gemini API. It offers real-time updates, crop suggestions, and healthcare assistant to help users make informed decisions.</p>
+                        <div class="work-tech">
+                            <span class="tech-badge">React.js</span>
+                            <span class="tech-badge">Next.js</span>
+                            <span class="tech-badge">Node.js</span>
+                            <span class="tech-badge">Tailwind CSS</span>
+                            <span class="tech-badge">JavaScript</span>
+                            <span class="tech-badge">Google Gemini API</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="work-card" data-category="web">
+                    <div class="work-image">
+                        <div class="work-overlay">
+                            <div class="work-links">
+                                <a href="https://promptgenius-ai-658178939011.us-west1.run.app/" class="work-link" title="Live Demo" target="_blank">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                                <a href="https://github.com/soumya031/promptgenius-ai" class="work-link" title="Source Code" target="_blank">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="work-placeholder">PromptGenius AI</div>
+                    </div>
+                    <div class="work-content">
+                    <h3>PromptGenius AI</h3>
+                        <p>PromptGenius AI is a smart, web-based AI assistant that helps users generate high-quality, context-aware prompts for creative writing, coding, marketing, design, and more. Whether you're a developer, writer, or digital creator, PromptGenius uses advanced AI models to deliver tailored prompt suggestions that spark creativity and boost productivity — all in seconds.</p>
+                        <div class="work-tech">
+                            <span class="tech-badge">Machine Learning</span>
+                            <span class="tech-badge">Python</span>
+                            <span class="tech-badge">MySQL</span>
+                            <span class="tech-badge">Firebase</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="work-card" data-category="ai">
+                    <div class="work-image">
+                        <div class="work-overlay">
+                            <div class="work-links">
+                                <a href="https://ai-image-soumya-865419808765.us-west1.run.app/" class="work-link" title="Live Demo" target="_blank">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                                <a href="https://github.com/soumya031/image_genaretion" class="work-link" title="Source Code" target="_blank">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="work-placeholder">AI Image Generation</div>
+                    </div>
+                    <div class="work-content">
+                    <h3>AI Image Generation</h3>
+                        <p>Advanced AI-powered image generation application create high-quality, custom images based on user prompts and specifications.</p>
+                        <div class="work-tech">
+                            <span class="tech-badge">React</span>
+                            <span class="tech-badge">TypeScript</span>
+                            <span class="tech-badge">Vite</span>
+                            <span class="tech-badge">Google Gemini API</span>
+                            <span class="tech-badge">AI/ML</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="work-card" data-category="ai">
+                    <div class="work-image">
+                        <div class="work-overlay">
+                            <div class="work-links">
+                                <a href="https://github.com/soumya031/group-project-for-IPM" class="work-link" title="Source Code" target="_blank">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="work-placeholder">Disease Prediction</div>
+                    </div>
+                    <div class="work-content">
+                    <h3>Disease Prediction System</h3>
+                        <p>Machine learning-based disease prediction system developed as a group project for IPM. This AI-powered application analyzes medical data to predict potential diseases and provide early diagnosis recommendations.</p>
+                        <div class="work-tech">
+                            <span class="tech-badge">Python</span>
+                            <span class="tech-badge">Jupyter Notebook</span>
+                            <span class="tech-badge">Machine Learning</span>
+                            <span class="tech-badge">Data Analysis</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="work-card" data-category="ai">
+                    <div class="work-image">
+                        <div class="work-overlay">
+                            <div class="work-links">
+                                <a href="https://github.com/soumya031/autometed-book-publisher" class="work-link" title="Source Code" target="_blank">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="work-placeholder">Automated Book Publisher</div>
+                    </div>
+                    <div class="work-content">
+                    <h3>Automated Book Publisher</h3>
+                        <p>Python-based automation tool that streamlines the entire eBook publishing workflow. It converts raw text or markdown into a professionally formatted PDF or EPUB, generates AI-based summaries and cover designs, and automates metadata creation — making self-publishing faster and smarter.</p>
+                        <div class="work-tech">
+                            <span class="tech-badge">Machine Learning</span>
+                            <span class="tech-badge">Python</span>
+                            <span class="tech-badge">Deep Learning</span>
+                            <span class="tech-badge">NLP</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="work-card" data-category="web">
+                    <div class="work-image">
+                        <div class="work-overlay">
+                            <div class="work-links">
+                                <a href="#" class="work-link" title="Live Demo">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                                <a href="#" class="work-link" title="Source Code">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="work-placeholder">Social Media Dashboard</div>
+                    </div>
+                    <div class="work-content">
+                    <h3>Social Media Dashboard</h3>
+                        <p>Real-time analytics dashboard for social media management with data visualization and reporting features.</p>
+                        <div class="work-tech">
+                            <span class="tech-badge">Angular</span>
+                            <span class="tech-badge">Django</span>
+                            <span class="tech-badge">Chart.js</span>
+                            <span class="tech-badge">Redis</span>
+                        </div>
+                    </div>
+                </div>
+                
+               
+                <div class="work-card" data-category="mobile">
+                    <div class="work-image">
+                        <div class="work-overlay">
+                            <div class="work-links">
+                                <a href="#" class="work-link" title="Live Demo">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                                <a href="#" class="work-link" title="Source Code">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="work-placeholder">Fitness Tracker</div>
+                    </div>
+                    <div class="work-content">
+                    <h3>Fitness Tracker App</h3>
+                        <p>Mobile fitness tracking application with workout plans, progress monitoring, and health analytics.</p>
+                        <div class="work-tech">
+                            <span class="tech-badge">React Native</span>
+                            <span class="tech-badge">Firebase</span>
+                            <span class="tech-badge">HealthKit</span>
+                            <span class="tech-badge">Redux</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="work-card" data-category="mobile">
+                    <div class="work-image">
+                        <div class="work-overlay">
+                            <div class="work-links">
+                                <a href="#" class="work-link" title="Live Demo">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                                <a href="#" class="work-link" title="Source Code">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="work-placeholder">Food Delivery</div>
+                    </div>
+                    <div class="work-content">
+                    <h3>Food Delivery App</h3>
+                        <p>Cross-platform food delivery application with real-time tracking, payment integration, and restaurant management.</p>
+                        <div class="work-tech">
+                            <span class="tech-badge">Flutter</span>
+                            <span class="tech-badge">Node.js</span>
+                            <span class="tech-badge">MongoDB</span>
+                            <span class="tech-badge">Google Maps</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="work-card" data-category="mobile">
+                    <div class="work-image">
+                        <div class="work-overlay">
+                            <div class="work-links">
+                                <a href="#" class="work-link" title="Live Demo">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                                <a href="#" class="work-link" title="Source Code">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="work-placeholder">Language Learning</div>
+                    </div>
+                    <div class="work-content">
+                    <h3>Language Learning App</h3>
+                        <p>Interactive language learning platform with speech recognition, gamification, and personalized learning paths.</p>
+                        <div class="work-tech">
+                            <span class="tech-badge">Ionic</span>
+                            <span class="tech-badge">Angular</span>
+                            <span class="tech-badge">Speech API</span>
+                            <span class="tech-badge">SQLite</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="work-card" data-category="ai">
+                    <div class="work-image">
+                        <div class="work-overlay">
+                            <div class="work-links">
+                                <a href="#" class="work-link" title="Live Demo">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                                <a href="#" class="work-link" title="Source Code">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="work-placeholder">Image Recognition</div>
+                    </div>
+                    <div class="work-content">
+                    <h3>Image Recognition System</h3>
+                        <p>Deep learning model for object detection and image classification with 92% accuracy on custom datasets.</p>
+                        <div class="work-tech">
+                            <span class="tech-badge">PyTorch</span>
+                            <span class="tech-badge">OpenCV</span>
+                            <span class="tech-badge">CNN</span>
+                            <span class="tech-badge">Flask</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="work-card" data-category="ai">
+                    <div class="work-image">
+                        <div class="work-overlay">
+                            <div class="work-links">
+                                <a href="#" class="work-link" title="Live Demo">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                                <a href="#" class="work-link" title="Source Code">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="work-placeholder">Chatbot Assistant</div>
+                    </div>
+                    <div class="work-content">
+                    <h3>AI Chatbot Assistant</h3>
+                        <p>Natural language processing chatbot for customer support with sentiment analysis and automated responses.</p>
+                        <div class="work-tech">
+                            <span class="tech-badge">Python</span>
+                            <span class="tech-badge">NLTK</span>
+                            <span class="tech-badge">Transformers</span>
+                            <span class="tech-badge">FastAPI</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="work-card" data-category="ai">
+                    <div class="work-image">
+                        <div class="work-overlay">
+                            <div class="work-links">
+                                <a href="#" class="work-link" title="Live Demo">
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                                <a href="#" class="work-link" title="Source Code">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="work-placeholder">Recommendation Engine</div>
+                    </div>
+                    <div class="work-content">
+                    <h3>Recommendation Engine</h3>
+                        <p>Collaborative filtering recommendation system for e-commerce with personalized product suggestions.</p>
+                        <div class="work-tech">
+                            <span class="tech-badge">Python</span>
+                            <span class="tech-badge">Surprise</span>
+                            <span class="tech-badge">NumPy</span>
+                            <span class="tech-badge">Django</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Blog Posts</h2>
+                <p class="section-subtitle">Thoughts on technology, development, and innovation</p>
+            </div>
+            
+            <div class="blog-grid" id="blog-posts">
+                <!-- Blog posts will be dynamically loaded -->
+            </div>
+            
+            <div class="blog-actions">
+                <button class="btn btn-primary" onclick="refreshBlogPosts()">
+                    <i class="fas fa-sync-alt"></i> Refresh Posts
+                </button>
+                <button class="btn btn-secondary" onclick="loadMorePosts()">
+                    <i class="fas fa-plus"></i> Load More
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Games Section -->
+    <section id="games" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Interactive Games</h2>
+                <p class="section-subtitle">Have fun while exploring my technical skills</p>
+            </div>
+            
+            <div class="games-grid">
+                <div class="game-card" onclick="startSnakeGame()">
+                    <div class="game-icon">
+                        <i class="fas fa-snake"></i>
+                    </div>
+                    <h3>Snake Game</h3>
+                    <p>Classic snake game with modern graphics</p>
+                    <div class="game-stats">
+                        <span>High Score: <span id="snake-high-score">0</span></span>
+                    </div>
+                </div>
+                
+                <div class="game-card" onclick="startCricketGame()">
+                    <div class="game-icon">
+                        <i class="fas fa-cricket"></i>
+                    </div>
+                    <h3>Cricket</h3>
+                    <p>Virtual cricket match simulation</p>
+                    <div class="game-stats">
+                        <span>Best Score: <span id="cricket-best-score">0</span></span>
+                    </div>
+                </div>
+                
+                <div class="game-card" onclick="startFootballGame()">
+                    <div class="game-icon">
+                        <i class="fas fa-futbol"></i>
+                    </div>
+                    <h3>Football</h3>
+                    <p>Penalty shootout challenge</p>
+                    <div class="game-stats">
+                        <span>Goals: <span id="football-goals">0</span></span>
+                    </div>
+                </div>
+                
+                <div class="game-card" onclick="startTicTacToe()">
+                    <div class="game-icon">
+                        <i class="fas fa-times"></i>
+                    </div>
+                    <h3>Tic Tac Toe</h3>
+                    <p>Strategic thinking game</p>
+                    <div class="game-stats">
+                        <span>Wins: <span id="tictactoe-wins">0</span></span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="game-container" id="game-container" style="display: none;">
+                <div class="game-header">
+                <div class="game-info">
+                    <div>Score: <span id="game-score">0</span></div>
+                    <div>High Score: <span id="high-score">0</span></div>
+                    </div>
+                    <div class="game-controls">
+                        <button class="btn btn-small" onclick="pauseGame()">
+                            <i class="fas fa-pause"></i>
+                        </button>
+                        <button class="btn btn-small" onclick="resetGame()">
+                            <i class="fas fa-redo"></i>
+                        </button>
+                        <button class="btn btn-small" onclick="closeGame()">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="game-board" id="game-board"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Terminal Section -->
+    <section id="terminal" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Interactive Terminal</h2>
+                <p class="section-subtitle">Practice  commands in a safe environment</p>
+            </div>
+            
+            <div class="terminal-container">
+                <div class="terminal-header">
+                    <div class="terminal-controls">
+                        <span class="terminal-btn close"></span>
+                        <span class="terminal-btn minimize"></span>
+                        <span class="terminal-btn maximize"></span>
+                    </div>
+                    <div class="terminal-title">
+                        <i class="fas fa-terminal"></i> Terminal
+                    </div>
+                </div>
+                
+                <div class="terminal-body">
+                    <div class="terminal-output" id="terminal-output">
+                        <div class="terminal-line">
+                            <span class="prompt">root@cybersecurity:~$</span>
+                            <span class="command">welcome</span>
+                        </div>
+                        <div class="terminal-response">
+                            Welcome to the Interactive Cybersecurity Terminal!<br>
+                            Type 'help' to see available commands.<br>
+                            Type 'clear' to clear the terminal.<br>
+                            Type 'exit' to close the terminal.<br><br>
+                        </div>
+                    </div>
+                    
+                    <div class="terminal-input-line">
+                        <span class="prompt">root@cybersecurity:~$</span>
+                        <input type="text" id="terminal-input" placeholder="Enter command..." autocomplete="off">
+                        <span class="cursor">|</span>
+                    </div>
+                </div>
+                
+                <div class="terminal-sidebar">
+                    <div class="sidebar-section">
+                        <h4><i class="fas fa-list"></i> Quick Commands</h4>
+                        <div class="quick-commands">
+                            <button class="quick-cmd" onclick="executeQuickCommand('help')">help</button>
+                            <button class="quick-cmd" onclick="executeQuickCommand('ls')">ls</button>
+                            <button class="quick-cmd" onclick="executeQuickCommand('pwd')">pwd</button>
+                            <button class="quick-cmd" onclick="executeQuickCommand('whoami')">whoami</button>
+                            <button class="quick-cmd" onclick="executeQuickCommand('nmap -h')">nmap -h</button>
+                            <button class="quick-cmd" onclick="executeQuickCommand('netstat -tuln')">netstat</button>
+                        </div>
+                    </div>
+                    
+                    <div class="sidebar-section">
+                        <h4><i class="fas fa-shield-alt"></i> Cybersecurity</h4>
+                        <div class="category-commands">
+                            <button class="cat-cmd" onclick="showCategory('nmap')">Nmap Commands</button>
+                            <button class="cat-cmd" onclick="showCategory('netcat')">Netcat Commands</button>
+                            <button class="cat-cmd" onclick="showCategory('wireshark')">Wireshark Commands</button>
+                            <button class="cat-cmd" onclick="showCategory('metasploit')">Metasploit Commands</button>
+                        </div>
+                    </div>
+                    
+                    <div class="sidebar-section">
+                        <h4><i class="fas fa-linux"></i> Linux Commands</h4>
+                        <div class="category-commands">
+                            <button class="cat-cmd" onclick="showCategory('file')">File Commands</button>
+                            <button class="cat-cmd" onclick="showCategory('process')">Process Commands</button>
+                            <button class="cat-cmd" onclick="showCategory('network')">Network Commands</button>
+                            <button class="cat-cmd" onclick="showCategory('system')">System Commands</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Get In Touch</h2>
+                <p class="section-subtitle">Let's discuss your next project</p>
+            </div>
+            
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Email</h4>
+                            <p>soumyadipsaha743@gmail.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Phone</h4>
+                            <p>+91-7063155948</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Location</h4>
+                            <p>Kolkata, West Bengal, India</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Availability</h4>
+                            <p>Available for new opportunities</p>
+                        </div>
+                    </div>
+                </div>
+                
+            <div class="contact-form">
+                <form id="contact-form" onsubmit="submitContact(event)">
+                        <div class="form-row">
+                    <div class="form-group">
+                                <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+                    </div>
+                    <div class="form-group">
+                                <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                    </div>
+                        </div>
+                        
+                        <div class="form-row">
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" placeholder="Enter your phone number">
+                    </div>
+                    <div class="form-group">
+                                <label for="subject">Subject *</label>
+                        <input type="text" id="subject" name="subject" placeholder="What's this about?" required>
+                    </div>
+                        </div>
+                        
+                    <div class="form-group">
+                            <label for="message">Message *</label>
+                        <textarea id="message" name="message" rows="5" placeholder="Tell me more about your project or inquiry..." required></textarea>
+                    </div>
+                        
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i> Save Message
+                            </button>
+                            <button type="reset" class="btn btn-secondary">
+                                <i class="fas fa-undo"></i> Reset
+                            </button>
+                            <button type="button" class="btn btn-secondary" onclick="window.contactFormManager.viewStoredMessages()">
+                                <i class="fas fa-inbox"></i> View Messages
+                            </button>
+                        </div>
+                </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Soumyadip Saha</h3>
+                    <p>Full Stack Developer passionate about creating innovative digital solutions.</p>
+                    <div class="social-links">
+                        <a href="https://github.com/soumya031" target="_blank">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/soumyadip-saha-/" target="_blank">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="mailto:soumyadipsaha743@gmail.com">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#work">Work</a></li>
+                        <li><a href="#blog">Blog</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Skills</h4>
+                    <ul>
+                        <li>Frontend Development</li>
+                        <li>Backend Development</li>
+                        <li>AI/ML</li>
+                        <li>Database Management</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Soumyadip Saha. All rights reserved.</p>
+                <p>Built with ❤️ SoumyaAI technologies</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="emailjs-config.js"></script>
+    <script src="JS/threeDScene.js"></script>
+    <script src="JS/navigation.js"></script>
+    <script src="JS/contactForm.js"></script>
+    <script src="JS/quiz.js"></script>
+    <script src="JS/games/snakeGame.js"></script>
+    <script src="JS/games/cricketGame.js"></script>
+    <script src="JS/games/footballGame.js"></script>
+    <script src="JS/games/ticTacToe.js"></script>
+    <script src="JS/blog.js"></script>
+    <script src="JS/terminal.js"></script>
+    <script src="JS/main.js"></script>
+</body>
+</html>

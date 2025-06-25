@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Form Test</title>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="CSS/style.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #2a2a2a 0%, #3a3a3a 25%, #4a4a4a 50%, #3a3a3a 75%, #2a2a2a 100%);
+            color: #e3f2fd;
+            font-family: 'Inter', 'Segoe UI', 'Arial', sans-serif;
+            padding: 20px;
+        }
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(58, 58, 58, 0.9);
+            border: 1px solid rgba(79, 195, 247, 0.3);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(20px);
+        }
+        .test-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+        }
+        .status {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .success { background: rgba(76, 175, 80, 0.2); color: #4caf50; border: 1px solid #4caf50; }
+        .error { background: rgba(244, 67, 54, 0.2); color: #f44336; border: 1px solid #f44336; }
+        .info { background: rgba(33, 150, 243, 0.2); color: #2196f3; border: 1px solid #2196f3; }
+        .log {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 15px;
+            border-radius: 5px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            max-height: 200px;
+            overflow-y: auto;
+            border: 1px solid rgba(79, 195, 247, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>Contact Form Test</h1>
+        
+        <div class="test-section">
+            <h3>Configuration Status</h3>
+            <div id="config-status" class="status info">Checking configuration...</div>
+            <div id="config-details"></div>
+        </div>
+        
+        <div class="test-section">
+            <h3>Contact Form</h3>
+            <div class="contact-form">
+                <form id="contact-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Full Name *</label>
+                            <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" placeholder="Enter your phone number">
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject *</label>
+                            <input type="text" id="subject" name="subject" placeholder="What's this about?" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" rows="5" placeholder="Tell me more about your project or inquiry..." required></textarea>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i> Send Message
+                        </button>
+                        <button type="reset" class="btn btn-secondary">
+                            <i class="fas fa-undo"></i> Reset
+                        </button>
+                        <button type="button" class="btn btn-secondary" onclick="viewMessages()">
+                            <i class="fas fa-inbox"></i> View Messages
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <div class="test-section">
+            <h3>Test Log</h3>
+            <div id="log" class="log"></div>
+        </div>
+    </div>
+
+    <script src="emailjs-config.js"></script>
+    <script src="JS/contactForm.js"></script>
+    <script>
+        const logDiv = document.getElementById('log');
+        const configStatus = document.getElementById('config-status');
+        const configDetails = document.getElementById('config-details');
+        
+        function log(message, type = 'info') {
+            const timestamp = new Date().toLocaleTimeString();
+            logDiv.textContent += `[${timestamp}] ${message}\n`;
+            logDiv.scrollTop = logDiv.scrollHeight;
+            console.log(message);
+        }
+        
+        function updateConfigStatus(message, type) {
+            configStatus.textContent = message;
+            configStatus.className = `status ${type}`;
+        }
+        
+        function showConfigDetails() {
+            configDetails.innerHTML = `
+                <p><strong>Public Key:</strong> ${EMAILJS_CONFIG.PUBLIC_KEY}</p>
+                <p><strong>Service ID:</strong> ${EMAILJS_CONFIG.SERVICE_ID}</p>
+                <p><strong>Template ID:</strong> ${EMAILJS_CONFIG.TEMPLATE_ID}</p>
+                <p><strong>To Email:</strong> ${EMAILJS_CONFIG.TO_EMAIL}</p>
+            `;
+        }
+        
+        function viewMessages() {
+            if (window.contactFormManager) {
+                window.contactFormManager.viewStoredMessages();
+            } else {
+                log('❌ Contact form manager not available');
+            }
+        }
+        
+        // Test initialization
+        function testInitialization() {
+            log('=== Testing Contact Form Initialization ===');
+            
+            // Check if EmailJS is loaded
+            if (typeof emailjs === 'undefined') {
+                log('❌ EmailJS library not loaded');
+                updateConfigStatus('EmailJS library not loaded', 'error');
+                return;
+            }
+            
+            log('✅ EmailJS library loaded');
+            
+            // Check configuration
+            if (!EMAILJS_CONFIG) {
+                log('❌ EmailJS configuration not found');
+                updateConfigStatus('Configuration not found', 'error');
+                return;
+            }
+            
+            log('✅ EmailJS configuration found');
+            
+            // Check contact form manager
+            setTimeout(() => {
+                if (window.contactFormManager) {
+                    log('✅ Contact form manager initialized');
+                    updateConfigStatus('Contact form ready', 'success');
+                } else {
+                    log('❌ Contact form manager not initialized');
+                    updateConfigStatus('Contact form manager failed', 'error');
+                }
+            }, 1000);
+        }
+        
+        // Initialize on page load
+        window.addEventListener('load', () => {
+            log('Page loaded, testing contact form...');
+            showConfigDetails();
+            testInitialization();
+            
+            // Monitor for contact form manager
+            let attempts = 0;
+            const checkManager = setInterval(() => {
+                attempts++;
+                if (window.contactFormManager) {
+                    log('✅ Contact form manager detected');
+                    clearInterval(checkManager);
+                } else if (attempts > 10) {
+                    log('❌ Contact form manager not found after 10 attempts');
+                    clearInterval(checkManager);
+                }
+            }, 500);
+        });
+    </script>
+</body>
+</html> 
