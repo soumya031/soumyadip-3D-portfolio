@@ -160,6 +160,11 @@ class PortfolioApp {
 
         this.currentSection = sectionId;
         this.animateSection(sectionId);
+
+        // Restart typing animation if about section is shown
+        if (sectionId === 'about') {
+            typeAboutSection();
+        }
     }
 
     animateSection(sectionId) {
@@ -345,6 +350,7 @@ class PortfolioApp {
 // Initialize app when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     window.portfolioApp = new PortfolioApp();
+    typeAboutSection();
 });
 
 // Global utility functions
@@ -388,3 +394,62 @@ window.downloadResume = function(event) {
             });
     }
 };
+
+// Typing effect for About section
+function typeAboutSection() {
+  const headingColor = '#111'; // Black for headings
+  const textColor = '#111'; // Black for normal text
+  const lines = [
+    { text: "My Journey", isHeading: true },
+    { text: "I'm a passionate and dedicated fresh graduate with a strong foundation in software development.", isHeading: false },
+    { text: "My journey in technology began with curiosity and has evolved into a deep commitment to creating innovative solutions that make a difference.", isHeading: false },
+    { text: "What I Do", isHeading: true },
+    { text: "I specialize in full-stack development and have a keen interest in artificial intelligence and machine learning.", isHeading: false },
+    { text: "Currently seeking opportunities to contribute to dynamic teams and grow as a professional developer.", isHeading: false },
+    { text: "My Approach", isHeading: true },
+    { text: "I believe in continuous learning and staying updated with the latest technological trends.", isHeading: false },
+    { text: "Every project is an opportunity to learn something new and push the boundaries of what's possible.", isHeading: false }
+  ];
+  const target = document.getElementById('about-typing');
+  if (!target) return;
+  let line = 0;
+  let char = 0;
+  let firstCycle = true;
+  target.innerHTML = '';
+  target.style.color = textColor;
+
+  function typeLine() {
+    const fastSpeed = lines[line].isHeading ? 10 : 7;
+    const normalSpeed = lines[line].isHeading ? 40 : 28;
+    const speed = firstCycle ? fastSpeed : normalSpeed;
+    if (char < lines[line].text.length) {
+      if (char === 0 && lines[line].isHeading) {
+        target.innerHTML += `<strong style=\"color: ${headingColor}; font-weight: bold;\">`;
+      }
+      target.innerHTML += lines[line].text[char];
+      char++;
+      setTimeout(typeLine, speed);
+    } else {
+      if (lines[line].isHeading) {
+        target.innerHTML += '</strong>';
+      }
+      target.innerHTML += '<br>';
+      let pause = lines[line].isHeading ? 1200 : 600;
+      if (line === 2 || line === 5 || line === 8) pause += 1000;
+      line++;
+      char = 0;
+      if (line < lines.length) {
+        setTimeout(typeLine, pause);
+      } else {
+        setTimeout(() => {
+          target.innerHTML = '';
+          line = 0;
+          char = 0;
+          firstCycle = false;
+          setTimeout(typeLine, 1200);
+        }, 8000);
+      }
+    }
+  }
+  typeLine();
+}

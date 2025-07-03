@@ -28,6 +28,25 @@ body {
     line-height: 1.6;
 }
 
+body, .section, .container, .section-title, .section-subtitle, .hero-title, .hero-subtitle, .tech-tag, .work-card, .blog-card, .game-card, .contact-info, .footer, .nav-link, .navbar, .profile-avatar, .about-paragraph, .social-link, .terminal-container, .terminal-title, .terminal-body, .terminal-output, .terminal-line, .command-category, .command-item, .mobile-nav-btn, .mobile-sections-list, .mobile-sections-modal, .scroll-indicator, .scroll-arrow, .status-dot, .profile-status, .work-content, .work-tech, .tech-badge, .blog-actions, .game-icon, .game-stats, .contact-item, .contact-icon, .contact-details, .form-group, .form-actions, .footer-section, .footer-bottom, .back-to-top, .notification, .notification-success, .notification-error, .notification-info, .char-counter, .field-error, .quick-cmd, .cat-cmd, .command, .prompt, .cursor, .text-center, .text-left, .text-right, .mb-1, .mb-2, .mb-3, .mb-4, .mt-1, .mt-2, .mt-3, .mt-4 {
+    color: #fff !important;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.7), 0 1px 0 #000 !important;
+}
+
+.btn, .btn-primary, .btn-secondary, .btn-resume, .tech-tag, .work-card, .blog-card, .game-card {
+    background: rgba(0,0,0,0.5) !important;
+    color: #fff !important;
+    border: 1px solid rgba(255,255,255,0.2) !important;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.7), 0 1px 0 #000 !important;
+}
+
+input, textarea {
+    background: rgba(0,0,0,0.5) !important;
+    color: #fff !important;
+    border: 1px solid rgba(255,255,255,0.2) !important;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.7), 0 1px 0 #000 !important;
+}
+
 /* Loading Screen */
 .loading-screen {
     position: fixed;
@@ -127,12 +146,14 @@ body {
     font-weight: bold;
     background: var(--gradient-rainbow);
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    -webkit-text-fill-color: #c3c9df !important;
     background-size: 200% 200%;
     animation: gradientShift 3s ease infinite;
     display: flex;
     align-items: center;
     gap: 10px;
+    color: #0a1e6b !important;
+    text-shadow: none !important;
 }
 
 .logo i {
@@ -235,7 +256,8 @@ body {
     margin-bottom: 4rem;
 }
 
-.section-title {
+.section-title, .section-title h2 {
+    color: #fff !important;
     font-size: 3rem;
     margin-bottom: 1rem;
     background: var(--gradient-rainbow);
@@ -586,6 +608,10 @@ body {
     font-size: 1.1rem;
     line-height: 1.8;
     color: var(--text-secondary);
+}
+
+#about-typing {
+    display: block !important;
 }
 
 /* Skills Section */
@@ -2083,5 +2109,33 @@ body {
     font-size: 1rem;
     line-height: 1.6;
     margin-bottom: 0.5rem;
+  }
+}
+
+#bg-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    z-index: -1;
+    pointer-events: none;
+    min-width: 100%;
+    min-height: 100%;
+    background: #000;
+}
+
+#home.section, #home.section * {
+    color: #fff !important;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.7), 0 1px 0 #000;
+}
+
+@media (max-width: 900px) {
+  #home.section.active ~ .floating-resume-btn,
+  #home.section.active + .floating-resume-btn,
+  #home.section.active .floating-resume-btn,
+  .floating-resume-btn {
+    display: none !important;
   }
 }
