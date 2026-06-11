@@ -270,7 +270,7 @@ class PortfolioApp {
                 event.preventDefault();
             }
             
-            const filePath = 'assets/images/soumyadip_resume.pdf';
+            const filePath = 'assets/images/Soumyadip_Saha_SDE1_ATS_Resume.docx';
             console.log('Attempting to download resume from:', filePath);
             
             // Check if file exists (basic check)
@@ -282,7 +282,7 @@ class PortfolioApp {
                         console.log('File found, initiating download...');
                         const link = document.createElement('a');
                         link.href = filePath;
-                        link.download = 'Soumyadip_Saha_Resume.pdf';
+                        link.download = 'Soumyadip_Saha_SDE1_ATS_Resume.docx';
                         link.target = '_blank';
                         
                         // Add link to document and trigger download
@@ -368,7 +368,7 @@ window.downloadResume = function(event) {
         window.portfolioApp.downloadResume();
     } else {
         // Fallback if app is not initialized
-        const filePath = 'assets/images/soumyadip_resume.pdf';
+        const filePath = 'assets/images/Soumyadip_Saha_SDE1_ATS_Resume.docx';
         console.log('Fallback: Attempting to download resume from:', filePath);
         
         fetch(filePath, { method: 'HEAD' })
@@ -378,7 +378,7 @@ window.downloadResume = function(event) {
                     console.log('Fallback: File found, initiating download...');
                     const link = document.createElement('a');
                     link.href = filePath;
-                    link.download = 'Soumyadip_Saha_Resume.pdf';
+                    link.download = 'Soumyadip_Saha_SDE1_ATS_Resume.docx';
                     link.target = '_blank';
                     document.body.appendChild(link);
                     link.click();

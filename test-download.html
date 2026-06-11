@@ -58,7 +58,7 @@
         <div id="log" class="log"></div>
         
         <h2>File Information:</h2>
-        <p><strong>Expected file path:</strong> assets/images/soumyadip_resume.pdf</p>
+        <p><strong>Expected file path:</strong> assets/images/Soumyadip_Saha_SDE1_ATS_Resume.docx</p>
         <p><strong>Current page URL:</strong> <span id="current-url"></span></p>
     </div>
 
@@ -85,7 +85,7 @@
         
         function testDownload() {
             console.log('=== Testing Download ===');
-            const filePath = 'assets/images/soumyadip_resume.pdf';
+            const filePath = 'assets/images/Soumyadip_Saha_SDE1_ATS_Resume.docx';
             
             // Test 1: Check if file exists
             console.log('Step 1: Checking if file exists...');
@@ -99,7 +99,7 @@
                         console.log('Step 2: Attempting download...');
                         const link = document.createElement('a');
                         link.href = filePath;
-                        link.download = 'Soumyadip_Saha_Resume.pdf';
+                        link.download = 'Soumyadip_Saha_SDE1_ATS_Resume.docx';
                         link.target = '_blank';
                         
                         document.body.appendChild(link);
@@ -118,7 +118,7 @@
         
         function checkFile() {
             console.log('=== Checking File ===');
-            const filePath = 'assets/images/soumyadip_resume.pdf';
+            const filePath = 'assets/images/Soumyadip_Saha_SDE1_ATS_Resume.docx';
             
             fetch(filePath, { method: 'HEAD' })
                 .then(response => {
